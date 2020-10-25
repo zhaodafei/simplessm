@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dafei.dao.GoodsDao">
+
+    <!-- 查询所有数据 -->
+    <select id="selectAllGoods" resultType="Goods">
+        SELECT * FROM goods
+    </select>
+
+    <!-- 查询一条数据 -->
+    <select id="selectGoodsOne" resultType="Goods" parameterType="long">
+        SELECT * FROM goods WHERE id = #{id}
+    </select>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="Goods">
+        INSERT INTO goods(goodsName, unitPrice, goodsNumber, consumeTime, countPrice, consumeWay, goodsComment, createdTime)
+        VALUES (#{goodsName}, #{unitPrice}, #{goodsNumber}, #{consumeTime}, #{countPrice}, #{consumeWay}, #{goodsComment}, #{createdTime});
+    </insert>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="Goods">
+        UPDATE goods SET goodsName=#{goodsName},unitPrice=#{unitPrice},goodsNumber=#{goodsNumber},createdTime=#{createdTime} WHERE id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM goods WHERE id=#{id}
+    </delete>
+</mapper>
